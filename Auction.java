@@ -43,7 +43,7 @@ public class Auction
             System.out.println(lot.toString());
         }
     }
-    
+
     /**
      * Make a bid for a lot.
      * A message is printed indicating whether the bid is
@@ -60,14 +60,14 @@ public class Auction
             boolean successful = selectedLot.bidFor(new Bid(bidder, value));
             if(successful) {
                 System.out.println("The bid for lot number " +
-                                   lotNumber + " was successful.");
+                    lotNumber + " was successful.");
             }
             else {
                 // Report which bid is higher.
                 Bid highestBid = selectedLot.getHighestBid();
                 System.out.println("Lot number: " + lotNumber +
-                                   " already has a bid of: " +
-                                   highestBid.getValue());
+                    " already has a bid of: " +
+                    highestBid.getValue());
             }
         }
     }
@@ -86,9 +86,9 @@ public class Auction
             // right lot.
             if(selectedLot.getNumber() != lotNumber) {
                 System.out.println("Internal error: Lot number " +
-                                   selectedLot.getNumber() +
-                                   " was returned instead of " +
-                                   lotNumber);
+                    selectedLot.getNumber() +
+                    " was returned instead of " +
+                    lotNumber);
                 // Don't return an invalid lot.
                 selectedLot = null;
             }
@@ -96,8 +96,29 @@ public class Auction
         }
         else {
             System.out.println("Lot number: " + lotNumber +
-                               " does not exist.");
+                " does not exist.");
             return null;
         }
     }
+
+    /**
+     * Se añade Metodo close para imprimir los detalles de los lotes. 
+     */
+    public void close()
+    {
+        Bid loteVendido = null;
+        for(Lot loteActual : lots){
+            if(loteActual.getHighestBid() != null){
+                loteVendido = loteActual.getHighestBid();
+                System.out.println("El comprador con la puja mas alta es D./Dª :" + loteActual.getHighestBid().getBidder().getName()
+                    + " por una cantidad de: " + loteActual.getHighestBid().getValue());
+            }
+            else{
+                System.out.println("No se ha vendido lote Numero " + loteActual.getNumber());
+            }
+
+        }
+
+    }
 }
+
