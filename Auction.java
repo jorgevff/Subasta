@@ -120,5 +120,24 @@ public class Auction
         }
 
     }
+    /**
+     * Se añade Metodo que devuelva la lista de los lotes no vendidos.
+     */
+    public ArrayList<Lot> getUnsold()
+    {
+        ArrayList<Lot> lotesNoVendidos = new ArrayList<Lot>();
+        
+        for(Lot loteActual : lots){
+            if(loteActual.getHighestBid() == null){
+                lotesNoVendidos.add(loteActual);
+            }
+        }
+        
+        return lotesNoVendidos;
+        
+        
+    }
+    
+    
 }
 
